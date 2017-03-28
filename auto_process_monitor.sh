@@ -1,6 +1,7 @@
 #!/bin/bash
-# name:auto_process_monitor.sh
-# 作用：监控程序，若程序被kill，则自动拉起程序
+
+# @author: peic
+# 监控程序，若程序被kill，则自动拉起程序
 
 
 # 脚本的名字，用以在查找进程时过滤掉当前脚本的进程
