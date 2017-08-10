@@ -348,7 +348,8 @@ class HttpServerHanlder(BaseHTTPRequestHandler):
 
         # 获取post传入的table_id
         table_id = form.getvalue('tableId')
-        main_create(table_id)
+        print table_id
+        # main_create(table_id)
 
         self.send_response(200)
         self.end_headers()
@@ -357,7 +358,7 @@ class HttpServerHanlder(BaseHTTPRequestHandler):
 
 # 启动http服务器，监听9527端口，接受请求url： http://127.0.0.1:9527/table_id
 def http_server_run():
-    server_ip = '127.0.0.1'
+    server_ip = '192.168.191.130'
     server_port = 9527
     server_address = (server_ip, server_port)
     http_server = HTTPServer(server_address, HttpServerHanlder)
@@ -367,8 +368,9 @@ def http_server_run():
 
 if __name__ == "__main__":
 
-    host = "192.168.191.130"
-    table_id = 6402025537844
-    mysql_info = {'host':host, 'port':3306, 'username':'root', 'passwd':'admin', 'db_name':'wex5'}
-    redis_info = {'host': host, 'port':6379, 'db':0}
-    database_len, database_num = create_yaml(mysql_info, redis_info, table_id)
+    # host = "192.168.191.130"
+    # table_id = 6402025537844
+    # mysql_info = {'host':host, 'port':3306, 'username':'root', 'passwd':'admin', 'db_name':'wex5'}
+    # redis_info = {'host': host, 'port':6379, 'db':0}
+    # database_len, database_num = create_yaml(mysql_info, redis_info, table_id)
+    http_server_run()
