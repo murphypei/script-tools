@@ -345,10 +345,10 @@ class HttpServerHanlder(BaseHTTPRequestHandler):
             environ={'REQUEST_METHOD': 'POST',
                      'CONTENT_TYPE': self.headers['Content-Type'],
                      })
-
+        print form
         # 获取post传入的table_id
-        table_id = form.getvalue('tableId')
-        print table_id
+        # table_id = form.getvalue('tableId')
+        # print table_id
         # main_create(table_id)
 
         self.send_response(200)
@@ -358,7 +358,7 @@ class HttpServerHanlder(BaseHTTPRequestHandler):
 
 # 启动http服务器，监听9527端口，接受请求url： http://127.0.0.1:9527/table_id
 def http_server_run():
-    server_ip = '192.168.191.130'
+    server_ip = '127.0.0.1'
     server_port = 9527
     server_address = (server_ip, server_port)
     http_server = HTTPServer(server_address, HttpServerHanlder)
