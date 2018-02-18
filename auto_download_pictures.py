@@ -6,7 +6,7 @@ from __future__ import print_function
 
 import urllib2
 import os
-import sys
+import argparse
 
 pic_formats = set(["png", "jpg"])
 
@@ -34,7 +34,23 @@ def main(pic_url, save_dir):
 
 
 if __name__ == "__main__":
-    dir_path = sys.argv[1]
-    pic_url = sys.argv[2]
-    dst_pic = main(pic_url, dir_path)
+    paser = argparse.ArgumentParser(
+        description="download and rename pictures."
+    )
+    paser.add_argument(
+        '--dir',
+        dest='dir_path',
+        help='save pictures dir path',
+        required=True,
+        type=str
+    )
+    paser.add_argument(
+        '--url',
+        dest='pic_url',
+        help='pictures url',
+        required=True,
+        type=str
+    )
+    args = paser.parse_args()
+    dst_pic = main(args.pic_url, args.dir_path)
     print(dst_pic)
