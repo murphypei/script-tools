@@ -6,7 +6,11 @@
     "configurations": [
 
         {
+<<<<<<< HEAD
             "name": "Python: Current File",
+=======
+            "name": "Python",
+>>>>>>> c9530221406eac1920b11d6835eb78d71cb6d45c
             "type": "python",
             "request": "launch",
             "stopOnEntry": false,
@@ -33,15 +37,23 @@
             "name": "Python: Terminal (integrated)",
             "type": "python",
             "request": "launch",
+<<<<<<< HEAD
             "stopOnEntry": false,
+=======
+            "stopOnEntry": true,
+>>>>>>> c9530221406eac1920b11d6835eb78d71cb6d45c
             "pythonPath": "${config:python.pythonPath}",
             "program": "${file}",
             "cwd": "",
             "console": "integratedTerminal",
             "env": {},
             "envFile": "${workspaceFolder}/.env",
+<<<<<<< HEAD
             "debugOptions": [],
             "internalConsoleOptions": "neverOpen"
+=======
+            "debugOptions": []
+>>>>>>> c9530221406eac1920b11d6835eb78d71cb6d45c
         },
         {
             "name": "Python: Terminal (external)",
@@ -54,8 +66,12 @@
             "console": "externalTerminal",
             "env": {},
             "envFile": "${workspaceFolder}/.env",
+<<<<<<< HEAD
             "debugOptions": [],
             "internalConsoleOptions": "neverOpen"
+=======
+            "debugOptions": []
+>>>>>>> c9530221406eac1920b11d6835eb78d71cb6d45c
         },
         {
             "name": "Python: Django",
