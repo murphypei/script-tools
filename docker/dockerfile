@@ -1,0 +1,69 @@
+FROM ubuntu:16.04
+
+MAINTAINER peichao "peichao0118@gmail.com"
+
+# 修改时区
+ENV DEBIAN_FRONTEND noninteractive
+
+# 清空ubuntu更新包
+RUN rm -rf /var/lib/apt/lists/*
+
+# 添加国内源
+ADD sources.list /etc/apt/
+
+# 安装软件
+RUN apt update && \
+    apt -y install build-essential && \
+    apt -y install git && \
+    apt -y install wget && \
+    apt -y install openssh-server && \
+    apt -y install tmux && \
+    apt -y install curl && \
+    apt -y install supervisor && \
+    apt -y install lrzsz && \
+    apt -y install libxml2-dev && \
+    apt -y install pkg-config libssl-dev libsslcommon2-dev && \
+    apt -y install libbz2-dev && \
+    apt -y install libcurl4-gnutls-dev && \
+    apt -y install libjpeg8-dev && \
+    apt -y install libpng-dev && \
+    apt -y install libfreetype6-dev && \
+    apt -y install libmcrypt-dev && \
+    apt -y install libxslt-dev && \
+    apt -y install libgmp-dev && \
+    apt -y install libreadline-dev
+
+# 安装python环境
+RUN apt -y install python python-pip && \
+    apt -y install python3 python3-pip && \
+    apt -y install python-virtualenv && \
+    mkdir -p ~/.pip && touch ~/.pip/pip.conf && \
+    echo '[global]\nindex-url = http://mirrors.aliyun.com/help/pypi' > ~/.pip/pip.conf && \
+    pip install --upgrade pip 
+
+# 安装hexo环境
+RUN apt -y install nodejs && \
+    apt -y install nodejs-legacy && \
+    apt -y install npm && \
+    npm config set registry https://registry.npm.taobao.org && \
+    npm cache clean -f && \
+    npm install n -g && \
+    n stable && \
+    npm install -g hexo
+
+# 修改root密码
+RUN echo -e 'adminroot\nadminroot' | passwd root
+
+# 配置vim
+# RUN wget -O - https://github.com/nvie/vimrc/raw/master/autoinstall.sh | sh
+
+# 设置SSH
+RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+
+# 开放SSH端口
+EXPOSE 22
+
+# 启动supervisor
+COPY supervisord.conf /etc/supervisor/supervisord.conf
+CMD supervisord -c /etc/supervisor/supervisord.conf
