@@ -22,33 +22,7 @@ sudo apt install -fy libatlas-base-dev gfortran
 
 cd ~/Downloads
 
-install pip and virtual environments
-wget https://bootstrap.pypa.io/get-pip.py
-sudo python get-pip.py
-sudo pip install virtualenv virtualenvwrapper
-sudo rm -rf ./get-pip.py ~/.cache/pip
-
-# config virtual envs
-echo -e "\n# virtualenv and virtualenvwrapper" >> ~/.bashrc
-echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bashrc
-echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python" >> ~/.bashrc
-echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
-
-export VIRTUALENVWRAPPER_PYTHON=`which python`
-source `which virtualenvwrapper.sh`
-
-source ~/.bashrc 
-
-# create a virtual env for cv
-mkvirtualenv cv -p python
-# change to cv env
-workon cv
-
-# install python packages
-pip install numpy 
-
 # compile and install opencv
-download opencv source code
 wget -O opencv.zip https://github.com/opencv/opencv/archive/3.4.1.zip
 wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/3.4.1.zip
 unzip opencv.zip
@@ -64,7 +38,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D INSTALL_PYTHON_EXAMPLES=ON \
     -D INSTALL_C_EXAMPLES=ON \
     -D OPENCV_EXTRA_MODULES_PATH=~/Downloads/opencv_contrib-3.4.1/modules \
-    -D PYTHON_EXECUTABLE=~/.virtualenvs/cv/bin/python \
+    -D PYTHON_EXECUTABLE=/usr/bin/python \
     -D BUILD_EXAMPLES=ON ..
 
 make -j4
