@@ -4,7 +4,7 @@ from pyftpdlib.servers import FTPServer
 
 authorizer = DummyAuthorizer()
 authorizer.add_user(‘upload’, ‘upload’, ‘/data’, perm=‘elradfmwM’)
-authorizer.add_user(‘liriwang’, ‘liriwang’, ‘/data/dataset/anon’, perm=‘elradfmwM’)
+authorizer.add_user(‘wang’, ‘wang’, ‘/data/dataset/anon’, perm=‘elradfmwM’)
 authorizer.add_anonymous(‘/data/dataset/anon/‘)
 handler = FTPHandler
 handler.authorizer = authorizer
